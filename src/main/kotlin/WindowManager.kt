@@ -24,6 +24,7 @@ class WindowManager(
 			user32.ShowWindow(hwnd, User32.SW_MAXIMIZE)
 		} else {
 			// 指定サイズに変更
+			user32.ShowWindow(hwnd, User32.SW_RESTORE) // 最小化したものを戻す
 			user32.SetWindowPos(
 				hwnd,
 				null,
@@ -42,17 +43,7 @@ class WindowManager(
 
 
 	private fun isMinimize(hwnd:WinDef.HWND): Boolean {
-		val pair = getWindowSize(hwnd) ?: return false
-		return pair == Pair(minimizeWidth,minimizeHeight)
-	}
-
-	private fun getWindowSize(hwnd:WinDef.HWND): Pair<Int, Int>? {
-		val rect = WinDef.RECT()
-		if (User32.INSTANCE.GetWindowRect(hwnd, rect)) {
-			val width = rect.right - rect.left
-			val height = rect.bottom - rect.top
-			return width to height
-		}
-		return null
+		val size = WindowSizeHelper.getWindowSize(hwnd) ?: return false
+		return size == Pair(minimizeWidth,minimizeHeight)
 	}
 }
