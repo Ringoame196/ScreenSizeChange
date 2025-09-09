@@ -5,8 +5,7 @@ import com.sun.jna.platform.win32.WinDef
 
 class WindowManager(
 	val windowTitle: String,
-	val minimizeWidth: Int,
-	val minimizeHeight: Int
+	val minimizeSize: WindowSize
 ) {
 
 	fun changeWindow() {
@@ -29,8 +28,8 @@ class WindowManager(
 				hwnd,
 				null,
 				0, 0,
-				minimizeWidth,
-				minimizeHeight,
+				minimizeSize.width,
+				minimizeSize.height,
 				Data.SWP_NOZORDER or Data.SWP_NOACTIVATE
 			)
 		}
@@ -44,6 +43,6 @@ class WindowManager(
 
 	private fun isMinimize(hwnd:WinDef.HWND): Boolean {
 		val size = WindowSizeHelper.getWindowSize(hwnd) ?: return false
-		return size == Pair(minimizeWidth,minimizeHeight)
+		return size == minimizeSize
 	}
 }

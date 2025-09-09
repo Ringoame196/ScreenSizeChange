@@ -23,15 +23,16 @@ fun main(args: Array<String>) {
 		println(usage)
 		return
 	}
+	val minimizeSize = WindowSize(minimizeWidth,minimizeHeight)
 
-	val windowManager = WindowManager(windowTitle, minimizeWidth, minimizeHeight)
+	val windowManager = WindowManager(windowTitle, minimizeSize)
 	windowManager.changeWindow()
 }
 
 private fun sendWindowSize(windowName: String) {
 	val size = WindowSizeHelper.getWindowSize(windowName)
 	if (size != null) {
-		println("ウィンドウ '$windowName' の現在のサイズ: 幅=${size.first}, 高さ=${size.second}")
+		println("ウィンドウ '$windowName' の現在のサイズ: 幅=${size.width}, 高さ=${size.height}")
 	} else {
 		println("ウィンドウ '$windowName' が見つかりませんでした")
 	}
