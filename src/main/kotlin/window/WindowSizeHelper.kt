@@ -7,7 +7,7 @@ import com.sun.jna.platform.win32.WinDef
 object WindowSizeHelper {
 	fun getWindowSize(windowTitle: String): WindowSize? {
 		val user32 = User32.INSTANCE
-		val hwnd = user32.FindWindow(null, windowTitle)
+		val hwnd = user32.FindWindow(null, windowTitle) ?: return null
 		return getWindowSize(hwnd)
 	}
 
