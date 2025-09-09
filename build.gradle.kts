@@ -21,3 +21,13 @@ tasks.test {
 kotlin {
     jvmToolchain(22)
 }
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "com.github.ringoame196.MainKt"
+    }
+    configurations["compileClasspath"].forEach {
+            file: File -> from(zipTree(file.absoluteFile))
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
