@@ -1,4 +1,4 @@
-package com.github.ringoame196
+package com.github.ringoame196.data
 
 object Data {
 	const val SWP_NOZORDER = 0x0004

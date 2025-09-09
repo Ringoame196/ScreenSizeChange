@@ -1,5 +1,8 @@
 package com.github.ringoame196
 
+import com.github.ringoame196.data.WindowSize
+import com.github.ringoame196.window.WindowManager
+import com.github.ringoame196.window.WindowSizeHelper
 import java.io.File
 
 fun main(args: Array<String>) {
@@ -30,7 +33,7 @@ fun main(args: Array<String>) {
 		println(usage)
 		return
 	}
-	val minimizeSize = WindowSize(minimizeWidth,minimizeHeight)
+	val minimizeSize = WindowSize(minimizeWidth, minimizeHeight)
 
 	val windowManager = WindowManager(windowTitle, minimizeSize)
 	windowManager.changeWindow()
